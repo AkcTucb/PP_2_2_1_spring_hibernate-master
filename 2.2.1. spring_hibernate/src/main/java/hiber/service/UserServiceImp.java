@@ -32,16 +32,11 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public User getUserByCar(String model, int series) {  // Вот он метод этот
-      return sessionFactory.getCurrentSession()
-              .createQuery(
-                      "SELECT u FROM User u WHERE u.car.model = :model AND u.car.series = :series",
-                      User.class
-              )
-              .setParameter("model", model)
-              .setParameter("series", series)
-              .uniqueResult();
+   public User getUserByCar(String model, int series) {
+      // Просто вызываем DAO
+      return userDao.getUserByCar(model, series);
    }
+
 
 
 }
